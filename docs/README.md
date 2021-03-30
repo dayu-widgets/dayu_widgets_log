@@ -105,7 +105,7 @@ divider_text_edit.divider('< end >')
 
 ## API
 
-### MTag
+### MLogTextEdit
 
 **Inherits**： `QTextEdit`
 
@@ -116,13 +116,13 @@ divider_text_edit.divider('< end >')
 #### Public Functions
 
 * `MLogTextEdit(parent=None)`
-* `enable_timestamp()` 开启行首添加时间
-* `log(str, tab=0)` 追加一行 log 级别的内容，可以额外传入一个数字，在行首添加指定个数的 tab
-* `info(str, tab=0)` 追加一行 info 级别的内容，可以额外传入一个数字，在行首添加指定个数的 tab
-* `error(str, tab=0)` 追加一行 error 级别的内容，可以额外传入一个数字，在行首添加指定个数的 tab
-* `warning(str, tab=0)` 追加一行 warning 级别的内容，可以额外传入一个数字，在行首添加指定个数的 tab
-* `success(str, tab=0)` 追加一行 success 级别的内容，可以额外传入一个数字，在行首添加指定个数的 tab
-* `divider(str=None)`追加一行分割线，可以传入 content 内容，会显示在分隔符中间
+* `enable_timestamp()` enable add timestamp at the start of line.
+* `log(str, tab=0)` append a log level content，beside you can give a number to add tab at the start of line.
+* `info(str, tab=0)` append an info level content，beside you can give a number to add tab at the start of line.
+* `error(str, tab=0)` append an error level content，beside you can give a number to add tab at the start of line.
+* `warning(str, tab=0)` append a warning level content，beside you can give a number to add tab at the start of line.
+* `success(str, tab=0)` append a success level content，beside you can give a number to add tab at the start of line.
+* `divider(str=None)`append a divider line. Your give some str, it will be shown in the middle of divider line.
 
 #### Signals
 
