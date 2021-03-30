@@ -33,17 +33,17 @@ class MLogTextEdit(MTextEdit):
         self.timestamp = True
 
     def _get_now(self):
-        return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S ') if self.timestamp else ''
+        return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S ')
 
     def _get_tab(self, num=0):
-        return '&nbsp;&nbsp;&nbsp;&nbsp;' * num
+        return '&nbsp;' * 4 * num
 
     def _append_html(self, color, content, tab):
-        self.append(
-            u'<span style="color:{}">{}{}{}</span>'.format(color,
-                                                           self._get_now(),
-                                                           self._get_tab(tab),
-                                                           content))
+        self.append(u'<span style="color:{}">{}{}{}</span>'.format(
+            color,
+            self._get_now() if self.timestamp else '',
+            self._get_tab(tab),
+            content))
 
     def log(self, content, tab=0):
         """
