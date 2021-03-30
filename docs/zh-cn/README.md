@@ -1,169 +1,127 @@
-# Tag for Dayu Widgets
-进行标记和分类的小标签。
+# Log for Dayu Widgets
+打印进度或者 Log 信息。类似软件中的 Console 窗口 
 
 ## 何时使用
-* 用于标记事物的属性和维度。
-* 进行分类。
+* 操作步骤较多，需要显示用户每次操作对应的结果、错误提示等等
 
 
 ## 安装
-```pip install dayu-widgets-tag```
+```pip install dayu-widgets-log```
 
 ## 导入模块
 ```python
-from dayu_widgets_tag import MTag, MNewTag, MCheckableTag
+from dayu_widgets_log import MLogTextEdit
 ```
 
 ## 代码演示
 
-### 基础
 
-![basic](../_media/basic.png)
-
-
-```python
-tag1 = MTag('Tag 1')
-tag2 = MTag('Clickable Tag').clickable()
-tag3 = MTag('Closeable Tag').closeable()
-```
-[查看完整代码](https://github.com/muyr/dayu_widgets_tag/tree/master/examples/basic.py)
-
-可以通过链式调用`clickable`使得标签可以点击，并且鼠标指向标签的时候，鼠标形状会变成小手的形状，当点击的时候有`sig_clicked`信号发射。
-可以通过链式调用`closeable`使得标签可以通过`x`按钮关闭，当关闭之后有`sig_closed`信号发射。
-
-### 标签样式
-
-可以通过`set_dayu_color(color)`来设置，也可通过`coloring(color)`链式调用。
-
-可以通过`no_border()`来取消`border`样式，使用`dayu_color`颜色填充背景色
-
-我们可以使用`dayu_widgets`中的`dayu_theme`里面的预设颜色。
-
-![preset-color](../_media/preset-color.png)
+### Log Level: Log
+![](../_media/log_level_log.png)
 
 ```python
-from dayu_widgets import MFlowLayout, dayu_theme
-
-preset_color_lay = MFlowLayout()
-for index, (text, color) in enumerate([
-    ('magenta', dayu_theme.magenta),
-    ('red', dayu_theme.red),
-    ('volcano', dayu_theme.volcano),
-    ('orange', dayu_theme.orange),
-    ('gold', dayu_theme.gold),
-    ('lime', dayu_theme.lime),
-    ('green', dayu_theme.green),
-    ('cyan', dayu_theme.cyan),
-    ('blue', dayu_theme.blue),
-    ('geekblue', dayu_theme.geekblue),
-    ('purple', dayu_theme.purple),
-]):
-    tag = MTag(text)
-    tag.set_dayu_color(color)
-    if index > 5:
-        tag.no_border()
-        preset_color_lay.addWidget(tag)
+log_text_edit = MLogTextEdit()
+log_text_edit.log('This is a log context.')
+log_text_edit.log('This is a log context with 1 tab.', 1)
+log_text_edit.log('This is a log context with 2 tabs.', 2)
+log_text_edit.log('This is a log context with 1 tab.', 1)
 ```
+[查看完整代码](https://github.com/muyr/dayu_widgets_log/tree/master/examples/log_text_edit_example.py)
 
-[查看完整代码](https://github.com/muyr/dayu_widgets_tag/tree/master/examples/colorful.py)
+### Log Level: Info
+![](../_media/log_level_info.png)
+```python
+info_log_text_edit = MLogTextEdit()
+info_log_text_edit.info('This is an info context.')
+info_log_text_edit.log('This is an info context with 2 tabs.', 2)
+```
+[查看完整代码](https://github.com/muyr/dayu_widgets_log/tree/master/examples/log_text_edit_example.py)
 
-也可以自定义颜色
+### Log Level: Warning
+![](../_media/log_level_warning.png)
+```python
+warning_log_text_edit = MLogTextEdit()
+warning_log_text_edit.warning('This is a warning context.')
+warning_log_text_edit.warning('This is a warning context with 1 tab.', 1)
 
-![custom-color](../_media/custom-color.png)
+```
+[查看完整代码](https://github.com/muyr/dayu_widgets_log/tree/master/examples/log_text_edit_example.py)
+
+
+### Log Level: Error
+![](../_media/log_level_error.png)
+```python
+error_log_text_edit = MLogTextEdit()
+error_log_text_edit.error('This is an error context.')
+error_log_text_edit.error('This is an error context with 2 tabs', 2)
+```
+[查看完整代码](https://github.com/muyr/dayu_widgets_log/tree/master/examples/log_text_edit_example.py)
+
+
+### Log Level: Success
+![](../_media/log_level_success.png)
+```python
+success_log_text_edit = MLogTextEdit()
+success_log_text_edit.success('This is a success context')
+success_log_text_edit.success('This is a success context with 1 tab', 1)
+```
+[查看完整代码](https://github.com/muyr/dayu_widgets_log/tree/master/examples/log_text_edit_example.py)
+
+
+### Enable Timestamp
+![](../_media/enable_timestamp.png)
+```python
+enable_timestamp_text_edit = MLogTextEdit()
+enable_timestamp_text_edit.enable_timestamp()
+enable_timestamp_text_edit.log('This is a log context.')
+enable_timestamp_text_edit.info('This is an info context.')
+enable_timestamp_text_edit.warning('This is a warning context.')
+enable_timestamp_text_edit.error('This is an error context.')
+enable_timestamp_text_edit.success('This is a success context')
+```
+[查看完整代码](https://github.com/muyr/dayu_widgets_log/tree/master/examples/log_text_edit_example.py)
+
+
+### Add Divider
+![](../_media/add_divider.png)
 
 ```python
-custom_color_lay = MFlowLayout()
-custom_color_lay.addWidget(MTag('#f00').coloring('#f00'))
-custom_color_lay.addWidget(MTag('#f66').coloring('#f66'))
-custom_color_lay.addWidget(MTag('#f0f').coloring('#f0f').no_border())
+divider_text_edit = MLogTextEdit()
+divider_text_edit.enable_timestamp()
+divider_text_edit.log('This is a log context.')
+divider_text_edit.log('Add a divider.')
+divider_text_edit.divider()
+divider_text_edit.info('This is an info context.')
+divider_text_edit.log('Add a divider with content.')
+divider_text_edit.divider('< start >')
+divider_text_edit.warning('This is a warning context.')
+divider_text_edit.error('This is an error context.')
+divider_text_edit.success('This is a success context')
+divider_text_edit.divider('< end >')
 ```
-
-[查看完整代码](https://github.com/muyr/dayu_widgets_tag/tree/master/examples/colorful.py)
-
-### 动态添加和删除
-
-![tag_add_delete_light](../_media/tag_add_delete_light.gif)
-
-```python
-# __init__
-
-    self.tag_lay = MFlowLayout()
-    self.tag_lay.addWidget(MTag('Unremoveable'))
-    self.tag_lay.addWidget(MTag('Tag2').closeable())
-    self.tag_lay.addWidget(MTag('Tag3').closeable())
-    
-    add_tag = MNewTag('New Tag')
-    add_tag.sig_add_tag.connect(self.slot_add_tag)
-    self.tag_lay.addWidget(add_tag)
-
-@Slot()
-def slot_add_tag(self, text):
-    tag = MTag(text).closeable()
-    self.tag_lay.insertWidget(self.tag_lay.count() - 1, tag)
-
-```
-
-[查看完整代码](https://github.com/muyr/dayu_widgets_tag/tree/master/examples/add_delete.py)
-
-### 可选择标签
-
-`MCheckableTag`是可以点击选择，取消选择的 `Tag`，继承自 `QCheckBox`，你可以直接将它当作 `QCheckBox`来使用
-
-![tag_checkable_light](../_media/tag_checkable_light.gif)
-
-```python
-topic_lay = QHBoxLayout()
-topic_lay.addWidget(QLabel('Categories:'))
-for i in ['Movies', 'Books', 'Music', 'Sports']:
-    topic_lay.addWidget(MCheckableTag(text=i))
-topic_lay.addStretch()
-```
-
-[查看完整代码](https://github.com/muyr/dayu_widgets_tag/tree/master/examples/checkable.py)
+[查看完整代码](https://github.com/muyr/dayu_widgets_log/tree/master/examples/log_text_edit_example.py)
 
 ## API
 
-### MTag
+### MLogTextEdit
 
-继承自： `QLabel`
+继承自： `QTextEdit`
 
 #### Properties
 
-* `dayu_color`: str 标签的颜色
+* 无
 
 #### Public Functions
 
-* `MNewTag(text='New Tag', parent=None)`
-* `get_dayu_color()` 获取标签的颜色
-* `set_dayu_color(str)` 设置标签的颜色
-* `coloring(str)` 效果同`set_dayu_color`，支持链式调用
-* `closeable()` 设置为可关闭，支持链式调用
-* `clickable()`设置为可点击，支持链式调用
-* `no_border()`去掉 border，改为填充样式，支持链式调用
+* `MLogTextEdit(parent=None)`
+* `enable_timestamp()` 开启行首添加时间
+* `log(str, tab=0)` 追加一行 log 级别的内容，可以额外传入一个数字，在行首添加指定个数的 tab
+* `info(str, tab=0)` 追加一行 info 级别的内容，可以额外传入一个数字，在行首添加指定个数的 tab
+* `error(str, tab=0)` 追加一行 error 级别的内容，可以额外传入一个数字，在行首添加指定个数的 tab
+* `warning(str, tab=0)` 追加一行 warning 级别的内容，可以额外传入一个数字，在行首添加指定个数的 tab
+* `success(str, tab=0)` 追加一行 success 级别的内容，可以额外传入一个数字，在行首添加指定个数的 tab
+* `divider(str=None)`追加一行分割线，可以传入 content 内容，会显示在分隔符中间
 
 #### Signals
 
-* `sig_clicked()`标签被鼠标左键点击时发射
-* `sig_closed()`标签被关闭时发射
-
-### MCheckableTag
-
-继承自：`QCheckBox` 
-
-仅仅修改样式和 `setCheckable(True)`，没有增加任何方法。
-
-API 请参考`QCheckBox`
-
-### MNewTag
-
-继承自：`QWidget`
-
-#### Public Functions
-
-* `MNewTag(text='New Tag', parent=None)`
-* `set_completer(QCompleter)` 设置进入编辑模式时的 Completer
-
-#### Signals
-
-* `sig_new_tag(str)` 用户输入完成回车后发射，参数为用户输入的内容
-
+* 无
