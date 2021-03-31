@@ -1,9 +1,9 @@
 # dayu_widgets_log
 ![](docs/_media/logo.svg)
 
-Log is a dayu_widgets plugin
+Log is a dayu_widgets plugin. Like a console in software.
 
-See the [document](https://muyr.github.io/dayu_widgets_log/)
+See the [document](https://muyr.github.io/dayu_widgets_log/) [文档](https://muyr.github.io/dayu_widgets_log/#/zh-cn/)
 
 ## Log Level: Log
 ![](docs/_media/log_level_log.png)
